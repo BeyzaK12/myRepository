@@ -1,0 +1,33 @@
+
+JOURNAL APPLICATION REPORT
+
+Purpose: To keep daily entries in a ZIP folder and to protect with a password.
+
+
+Explanation:
+
+First, users will see a calendar. In this screen, they should select a date.
+After they select a date, the dialog box will ask "What do you want? Writing(yes) or Reading(no)?".
+If they say "yes", there are two options:
+
+1)If they do not have a journal, the application will create a new daily file with a date-time stamp
+and it will be opened by Gedit. However, in terminal the dialog box will ask
+"Please save your journal. Do you want to save your journal?". If they say "yes",
+the application will create a ZIP folder that contains the daily file with a password and its name will be "journal.zip".
+The daily file that in the current directory will be removed.
+If they say "no"", in terminal the message will be printed "Please turn back after making a decision.".
+
+2)If they already have a journal, the daily file will be unzipped from journal.zip and it will be opened by Gedit.
+However, in terminal the dialog box will ask "Please save your journal. Do you want to save changes?".
+If they say "yes", the daily file will be added into journal.zip and it will be removed from the current directory.
+If they say "no"", in terminal the message will be printed "Please turn back after making a decision.".
+
+If they say "no", again there are two options: 1) If there is a daily file, the application will ask password.
+Then, it will be unzipped and be shown in terminal before it will be removed from the current directory. 2) If there is no daily file,
+in terminal the message will appear "There is no journal.".
+
+
+Conclusion:
+
+Users can write daily entries, read after writing and the most important thing is their entries are going to be protected with a password.
+They should just run the application!
