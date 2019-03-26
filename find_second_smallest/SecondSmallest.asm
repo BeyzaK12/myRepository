@@ -11,8 +11,7 @@ string:  .asciiz	"The second smallest is: "
 #write your code below
 
 la $s0, values		# values' address
-la $s1, size		# size's address
-lw $s1,($s1)		# $s1 = size of the array
+lw $s1, size		# size of the array
 addi $s1,$s1,-1
 
 #   small in s3
