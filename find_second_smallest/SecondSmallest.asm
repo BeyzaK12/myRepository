@@ -1,59 +1,49 @@
 .data
 #example input  
 values:  .word 13, 16, 16, 7, 7 #array contents
-size:    .word 5 		#size of the array
+size:    .word 5		#size of the array
 
 noSecond:.asciiz	"\nNo second smallest.\n"
 string:  .asciiz	"The second smallest is: "
 
-# Your code will be tested with various inputs
+# Your code will be tested with varsious inputs
 .text
 #write your code below
 
 la $s0, values		# values' address
-la $s1, size		# size's address
-lw $s1,($s1)		# $s1 = size of the array
-addi $s1,$s1,-1
+lw $s1, size		# size of the array
 
 #   small in s3
 #   secsmall in s4
 
-loop1:
-#dual comparison
-
-	bge $t0,$s1, loop2	# i in t0
+lw $t2,($s0)		# values[i] = t2
+lw $t3,4($s0)		# values[i+1] = t3
 	
-	sll $t4,$t0,2		#to increase address
-	add $t7,$t4,$s0
-	lw $t2,($t7)		# values[i] = t2
-	lw $t3,4($t7)		# values[i+1] = t3
-	
-	
-	blt $t2,$t3,if1		# t2 < t3
-	bgt $t2,$t3,elseif1	# t2 > t3
-	beq $t2,$t3,else1	# t2 = t3
+blt $t2,$t3,if1		# t2 < t3
+bgt $t2,$t3,elseif1	# t2 > t3
+beq $t2,$t3,else1	# t2 = t3
 	
 	if1:
 		add $s3,$0,$t2
 		add $s4,$0,$t3
 		
-		addi $t0,$t0,1
-		j loop1
+		beq $s1,2,found
+		j loop
 
 	elseif1:
 		add $s3,$0,$t3
 		add $s4,$0,$t2
 		
-		addi $t0,$t0,1
-		j loop1
+		beq $s1,2,found
+		j loop
 		
 	else1:
 		add $s3,$0,$t2
 		
-		addi $t0,$t0,1
-		j loop1
+		beq $s1,2,noSec
+		j loop
 
-loop2:
+loop:
 #comparison 1-1
 
 	beq $t1,$s1,x		#if comparison is done
@@ -66,39 +56,40 @@ loop2:
 	bgt $s3,$t2,elseif2
 	beq $s3,$t2,else2
 	
-	if2:
+	if2:		
+		beq $s3,$s4,ccc
 		blt $t2,$s4,ccc
 		
 		addi $t1,$t1,1
-		j loop2
+		j loop
+
 		ccc:
 			add $s4,$0,$t2
 			
 			addi $t1,$t1,1
-			j loop2
+			j loop
 	
 	elseif2:
 		add $s4,$0,$s3
 		add $s3,$0,$t2
 		
 		addi $t1,$t1,1
-		j loop2
+		j loop
 		
 	else2:
 		addi $t1,$t1,1
-		j loop2
+		j loop
 		
-	x:
-		beq $s4,$0,xx
-		j found
-			xx:
-			beq $s3,$0,noSec	# 0,0,0,...	small 0	 sec 0
-			j control
+x:
+	beq $s4,$0,xx
+	j found
+	
+	xx:
+		beq $s3,$0,noSec	# 0,0,0,...	small 0	 sec 0
+		j control
 		
-		
-			
 control:
-#sec is 0
+
 	beq $t5,$s1, noSec	#if control is done and
 				#no element is equal to zero, so all of them are same
 	

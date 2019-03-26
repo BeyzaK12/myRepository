@@ -5,26 +5,33 @@ FINDING THE SECOND SMALLEST ELEMENT IN THE ARRAY by using MIPS Assembly
 	
 	! The array and its size have to be given in the code.
 
-	-loop1-
-	The program compares a[i] and a[i+1].
+
+	The program compares a[i] and a[i+1] and gives values to the smallest and the second smallest elements.
 	
 	If a[i] is less than a[i+1],
-	   a[i] will be the smallest and a[i+1] will be the second smallest.
+	   the smallest element will be a[i] and the second smallest will be a[i+1].
+	   If size of the array is 2, the program jump to 'found'.
+	   Else the program jumps to 'loop'.
 	If a[i] is greater than a[i+1],
-	   a[i+1] will be the smallest and a[i] will be the second smallest.
+	   the smallest element will be a[i+1] and the second smallest will be a[i].
+	   If size of the array is 2, the program jump to 'found'.
+	   Else the program jumps to 'loop'.
 	If a[i] is equal to a[i+1],
-	   a[i] will be the smallest and the second smallest will stay equal 0.
-	
-	Thus, it finds the smallest and the second smallest elements,
-	but they may not be the desired elements.
-	Therefore, the program jumps to 'loop2'.
+	   the smallest element will be a[i] and the second smallest will stay equal 0.
+	   If size of the array is 2, the program jump to 'noSec'.
+	   Else the program jumps to 'loop'.
 
 	
-	-loop2-
+	-loop-
 	The program compares a[k] and the smallest element.
 	
-	If a[k] is greater than the smallest and the second smallest elements,
-	  the smallest and the second smallest elements won't change.
+	If a[k] is greater than the smallest elements:
+		If the smallest and the second smallest element are equal,
+		  the second smallest element will be equal to a[k].
+		If a[k] is less than the second smallest element,
+		  the second smallest element will be equal to a[k].
+		If the second smallest is less than a[k],
+		  elements won't change.
 	If a[k] is greater than the smallest element and less than the second smallest element,
 	  the second smallest element will be equal to a[k].
 	If a[k] is less than the smallest element,
