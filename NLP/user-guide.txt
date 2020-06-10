@@ -1,0 +1,14 @@
+USER GUIDE TO NLP IPYNB CODES
+
+* k-means_text_classification_NLP
+
+* n-gram_author_detection_NLP
+* n-gram_sentiment_analysis_NLP
+These codes select the test documents to take the last 5 of each author or emotion.
+
+* n-gram_author_detection_NLP_useRandom
+* n-gram_sentiment_analysis_NLP_useRandom
+These codes select the test documents to randomly receive 5 of each author or emotion.
+
+
+NOTE: When all the "n-gram_..." codes and the "k-means_..." cod eare executed, it prompts the user to enter an n or a k for n-gram or k-means.
